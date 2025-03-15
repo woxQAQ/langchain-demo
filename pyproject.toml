@@ -1,0 +1,26 @@
+[project]
+name = "llm"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "celery>=5.4.0",
+    "gitpython>=3.1.44",
+    "langchain>=0.3.20",
+    "langchain-community==0.3.17",
+    "langchain-milvus>=0.1.8",
+    "langchain-openai>=0.3.8",
+    "numpy>=2.2.3",
+    "pymilvus>=2.5.5",
+    "requests>=2.32.3",
+    "tiktoken>=0.9.0",
+    "tree-sitter==0.21.3",
+    "tree-sitter-languages>=1.10.2",
+    "unstructured>=0.14.8",
+]
+
+[tool.pyright]
+venv = ".venv"
+exclude = [".venv"]
+venvPath = "."
