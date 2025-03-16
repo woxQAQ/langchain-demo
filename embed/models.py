@@ -22,7 +22,6 @@ class CommonEmbeddings(Embeddings):
             l = []
             for d in texts:
                 res = self.__query(d)
-                logging.info(f"res: {res.json()}")
                 l.append(res.json()['data'][0]['embedding'])
             return l
         except Exception as e:
@@ -50,21 +49,3 @@ class CommonEmbeddings(Embeddings):
     # def aembed_documents(self,texts: List[str]) -> List[List[float]]:
 
     # def aembed_query(self,text: str) -> List[float]:
-
-
-token = os.getenv("SILICON_FLOW_API_KEY")
-model = os.getenv("EMBED_MODELS", "BAAI/bge-large-zh-v1.5")
-
-if token is None:
-    raise Exception("Silicon Flow API Key not found")
-
-url = "https://api.siliconflow.cn/v1/embeddings"
-
-
-def create_embedding(text: str):
-    payload = {"model": model, "input": text, "encoding_format": "float"}
-    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-    logging.info(f"model: {model}, token: {token}")
-    response = requests.post(url, json=payload, headers=headers)
-    logging.info(response)
-    return response.json()["data"]
