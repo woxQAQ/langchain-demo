@@ -1,5 +1,4 @@
 import logging
-import os
 from typing import List
 
 import requests
@@ -19,11 +18,11 @@ class CommonEmbeddings(Embeddings):
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         try:
-            l = []
+            docsList = []
             for d in texts:
                 res = self.__query(d)
-                l.append(res.json()['data'][0]['embedding'])
-            return l
+                docsList.append(res.json()['data'][0]['embedding'])
+            return docsList
         except Exception as e:
             logging.error(f"Error: {e}") 
             return []

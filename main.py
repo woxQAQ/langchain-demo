@@ -1,9 +1,7 @@
 import json
 import logging
 import logging.config
-from math import dist
-from os import path, seteuid
-import os
+from os import path
 import regex
 from langchain_text_splitters import Language, RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
@@ -23,7 +21,7 @@ def setup() -> AppConfig:
         datefmt="%d-%b-%y %H:%M:%S",
         handlers=[logging.StreamHandler()],
     )
-    config = app_config.model_dump()
+    app_config.model_dump()
     
     return app_config
 
@@ -33,7 +31,7 @@ rust_splitter._chunk_overlap = 300
 
 config = setup()
 repoPath = config.REPO_PATH
-if repoPath is "":
+if repoPath == "":
     raise Exception("Target GitHub Repo not found")
 
 outputPath = config.REPO_OUTPUT_PATH
